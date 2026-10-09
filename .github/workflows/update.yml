@@ -1,0 +1,28 @@
+# Keeps the cask on the newest release in Sizewise's appcast that has been out for HOLD_HOURS. A
+# release pulled from the appcast within that time never reaches Homebrew, and one pulled later
+# takes the cask back to the release before it.
+name: Update the cask
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: update
+jobs:
+  cask:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - id: update
+        run: python3 .github/update_cask.py
+        env:
+          HOLD_HOURS: "3"
+      - if: steps.update.outputs.version
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898273+github-actions[bot]@users.noreply.github.com"
+          git commit -qam "Sizewise $VERSION"
+          git push -q
+        env:
+          VERSION: ${{ steps.update.outputs.version }}
