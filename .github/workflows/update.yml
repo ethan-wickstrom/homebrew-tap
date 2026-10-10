@@ -20,8 +20,8 @@ jobs:
           HOLD_HOURS: "3"
       - if: steps.update.outputs.version
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898273+github-actions[bot]@users.noreply.github.com"
+          git config user.name "Ethan Wickstrom"
+          git config user.email "143438547+ethan-wickstrom@users.noreply.github.com"
           git commit -qam "Sizewise $VERSION"
           git push -q
         env:
