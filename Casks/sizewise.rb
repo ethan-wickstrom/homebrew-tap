@@ -1,6 +1,6 @@
 cask "sizewise" do
-  version "1.2.0"
-  sha256 "fc35c288c9709cf5f5af05a4b54354875561590c53c95b6c33dbc301447e2560"
+  version "1.2.1"
+  sha256 "621042de9435e0c196864c2d4495bca49af874e0e40a5f03ae03fb9b8a8d7755"
 
   url "https://updates.getsizewise.app/Sizewise-#{version}.dmg"
   name "Sizewise"
